@@ -1,0 +1,10 @@
+{
+  "name": "com.varonia.vboinput",
+  "version": "1.0.0",
+  "displayName": "Varonia Back Office Input ",
+  "description": "Implements the addition of the entire Varonia weapon system..",
+  "unity": "2019.4",
+  "author": {
+    "name": "Varonia"
+  }
+}
