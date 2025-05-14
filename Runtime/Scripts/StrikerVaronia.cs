@@ -44,7 +44,7 @@ namespace VaroniaBackOffice
         public Transform Pivot;
 
 
-        FixWristTrackerID fixWrist;
+        FixSteamTrackerID fixWrist;
 
 
 
