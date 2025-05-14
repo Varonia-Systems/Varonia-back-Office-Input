@@ -112,10 +112,10 @@ namespace VaroniaBackOffice
 
             strikerDevice.deviceOffsetRoot = transform;
             strikerDevice.applyLedsOnConnect = true;
-            strikerDevice.connectedLedColor = true;
+          //  strikerDevice.connectedLedColor = true;
 
 
-            fixWrist = GetComponentInChildren<FixWristTrackerID>();
+            fixWrist = GetComponentInChildren<FixSteamTrackerID>();
 
 
             fixWrist.OnLeftTracker.AddListener(EventWrist_L);
