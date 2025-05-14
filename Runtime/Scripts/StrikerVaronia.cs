@@ -194,8 +194,7 @@ namespace VaroniaBackOffice
             InputWrapper();
 
 
-
-
+#if VBO_VBS
             if (SteamFocus3Varonia.Instance.HMD_Ready && !LibraryOk)
             {
                 GetComponent<StrikerController>().UpdateHapticLibrary();
@@ -204,7 +203,7 @@ namespace VaroniaBackOffice
 
             if (!SteamFocus3Varonia.Instance.HMD_Ready && LibraryOk)
                 LibraryOk = false;
-
+#endif
         }
 
         public void LateUpdate()
