@@ -4,6 +4,7 @@
     "references": [
         "NaughtyAttributes.Core",
         "VboBase.Runtime",
+        "StrikerLink.Unity.Runtime",
         "SteamVR",
         "Unity.XR.OpenVR",
         "VBOVbs.Runtime"
