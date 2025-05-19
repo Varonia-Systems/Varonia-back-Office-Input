@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace VaroniaBackOffice
 {
@@ -55,12 +56,25 @@ namespace VaroniaBackOffice
         public float WaitTimeLostWeaponTracking = 1;
 
 
+        [BoxGroup("Parameter")] public bool showDebugRenderInit, hideDebugRenderAfterChangeScene;
+
+
         private void Awake()
         {
             Instance = this;
         }
 
-        private void Start()
+
+
+        private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
+        {
+            Render.SetActive(false);
+        }
+
+
+
+
+        private IEnumerator Start()
         {
             DontDestroyOnLoad(gameObject);
 
@@ -75,6 +89,14 @@ namespace VaroniaBackOffice
 
             EventReloadDown.AddListener(EventReloadDown_L);
             EventReloadUp.AddListener(EventReloadUp_L);
+
+
+            yield return new WaitUntil(() => Render != null);
+
+            // Debug Render
+            Render.SetActive(showDebugRenderInit);
+            if (hideDebugRenderAfterChangeScene)
+                SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
         }
 
@@ -154,10 +176,8 @@ namespace VaroniaBackOffice
             if (VaroniaGlobal.VG == null || VaroniaGlobal.VG.Rig == null)
                 return;
 
-            if (VaroniaGlobal.VG.OtherOffset != null)
-            { OffsetCompensation.transform.position = VaroniaGlobal.VG.OtherOffset.position; OffsetCompensation.transform.rotation = VaroniaGlobal.VG.OtherOffset.rotation; }
-            else
-            { OffsetCompensation.transform.position = VaroniaGlobal.VG.Rig.position; OffsetCompensation.transform.rotation = VaroniaGlobal.VG.Rig.rotation; }
+         
+             OffsetCompensation.transform.position = VaroniaGlobal.VG.Rig.position; OffsetCompensation.transform.rotation = VaroniaGlobal.VG.Rig.rotation; 
 
 
 

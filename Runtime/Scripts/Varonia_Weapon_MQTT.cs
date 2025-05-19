@@ -16,7 +16,7 @@ namespace VaroniaBackOffice
 
     public class Varonia_Weapon_MQTT : MonoBehaviour
     {
-        [BoxGroup("Parameter")] public bool showDebugRenderInit, hideDebugRenderAfterChangeScene;
+
         [BoxGroup("Parameter")] public float WaitTimeLostTracking = 1;
         // 3.15 = 0 %  4.2 % 100
         [BoxGroup("Info")] public float BatteryLevel;
@@ -64,8 +64,12 @@ namespace VaroniaBackOffice
         Coroutine coroutine_;
 
 
+
+
+
         public IEnumerator Start()
         {
+
             yield return new WaitUntil(() => Config.VaroniaConfig != null);
 
             if (Config.VaroniaConfig.Controller != Controller)
@@ -95,10 +99,6 @@ namespace VaroniaBackOffice
 
 
 
-            // Debug Render
-            Render.SetActive(showDebugRenderInit);
-            if (hideDebugRenderAfterChangeScene)
-                SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
 
         }
@@ -358,10 +358,7 @@ namespace VaroniaBackOffice
         }
         #endregion
 
-        private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
-        {
-            Render.SetActive(false);
-        }
+  
 
 
     }

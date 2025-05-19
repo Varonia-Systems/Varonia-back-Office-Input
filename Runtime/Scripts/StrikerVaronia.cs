@@ -90,13 +90,15 @@ namespace VaroniaBackOffice
         [BoxGroup("Render")] public GameObject Wrist_Left, Wrist_Right;
 
 
-
+        [BoxGroup("Parameter")] public float WaitTimeLostTracking = 1;
 
         public IEnumerator Start()
         {
             Instance = this;
 
-
+            VaroniaInput.Instance.Render = Render;
+            VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
+            VaroniaInput.Instance.Pivot = Pivot;
 
             yield return new WaitUntil(() => Config.VaroniaConfig != null);
 
@@ -107,13 +109,6 @@ namespace VaroniaBackOffice
             }
 
 
-            strikerDevice = gameObject.AddComponent<StrikerDevice>();
-            gameObject.AddComponent<StrikerController>();
-
-            strikerDevice.deviceOffsetRoot = transform;
-            strikerDevice.applyLedsOnConnect = true;
-          //  strikerDevice.connectedLedColor = true;
-
 
             fixWrist = GetComponentInChildren<FixSteamTrackerID>();
 
@@ -121,7 +116,7 @@ namespace VaroniaBackOffice
             fixWrist.OnLeftTracker.AddListener(EventWrist_L);
             fixWrist.OnRightTracker.AddListener(EventWrist_R);
 
-            Render.SetActive(true);
+           // Render.SetActive(true);
             VaroniaInput.Instance.Pivot = Pivot;
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
@@ -188,6 +183,10 @@ namespace VaroniaBackOffice
         bool LibraryOk;
         private void Update()
         {
+
+
+            if (SteamFocus3Varonia.Instance == null)
+                return;
 
 
             DebugInfo();

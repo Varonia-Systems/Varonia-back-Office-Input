@@ -272,8 +272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a202028e232fa4da7dccad61d40a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebugRenderInit: 1
-  hideDebugRenderAfterChangeScene: 1
   WaitTimeLostTracking: 1
   BatteryLevel: 0
   RSSI: 0
@@ -800,14 +798,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557670782393229215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4107395104079505433}
   - {fileID: 5104063430224333836}
-  m_Father: {fileID: 8825602282746914826}
+  m_Father: {fileID: 8409402772394327163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5999769948291456694
 MonoBehaviour:
@@ -2520,8 +2518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a202028e232fa4da7dccad61d40a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebugRenderInit: 1
-  hideDebugRenderAfterChangeScene: 1
   WaitTimeLostTracking: 0.2
   BatteryLevel: 0
   RSSI: 0
@@ -3907,9 +3903,12 @@ MonoBehaviour:
   EventReloadUp:
     m_PersistentCalls:
       m_Calls: []
+  Render: {fileID: 0}
   Pivot: {fileID: 0}
   OffsetCompensation: {fileID: 2918049001953472838}
   WaitTimeLostWeaponTracking: 1
+  showDebugRenderInit: 0
+  hideDebugRenderAfterChangeScene: 0
 --- !u!114 &2841535451672850464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4352,7 +4351,7 @@ Transform:
   - {fileID: 1144602695011243656}
   - {fileID: 237412418024438936}
   - {fileID: 5455664109840430040}
-  - {fileID: 8825602282746914826}
+  - {fileID: 8409402772394327163}
   - {fileID: 3171761235961955930}
   - {fileID: 6189620826254574039}
   - {fileID: 5895978993473027397}
@@ -4471,6 +4470,270 @@ MonoBehaviour:
   Wrist_Left: {fileID: 2458760034236884912}
   Wrist_Right: {fileID: 6144530581592611159}
   Pivot: {fileID: 3080961908089983207}
+--- !u!1 &8072248356106266710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8409402772394327163}
+  - component: {fileID: 9142912333807501953}
+  - component: {fileID: 6366240984585817446}
+  - component: {fileID: 8609229457310569143}
+  m_Layer: 0
+  m_Name: '[STRIKER VBS]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8409402772394327163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072248356106266710}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4150576141654311810}
+  m_Father: {fileID: 798286157191211955}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9142912333807501953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072248356106266710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6353a9704e72734d84a8d1927043467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceIndex: 0
+  deviceOffsetRoot: {fileID: 8409402772394327163}
+  debugInputsInEditor: 0
+  GUID: 
+  type: 0
+  isConnected: 0
+  isReady: 0
+  batteryLevel: 0
+  chargeStatus: 0
+  triggerPullThreshold: 0.8
+  applyLedsOnConnect: 1
+  connectedLedColor: {r: 0.14901961, g: 1, b: 0, a: 1}
+  DeviceEvents:
+    OnDeviceConnected:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDeviceDisconnected:
+      m_PersistentCalls:
+        m_Calls: []
+  TriggerEvents:
+    OnTriggerUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTriggerDown:
+      m_PersistentCalls:
+        m_Calls: []
+  ButtonEvents:
+    OnSideLeftUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSideLeftDown:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSideRightUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSideRightDown:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTouchpadLeftUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTouchpadLeftDown:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTouchpadRightUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTouchpadRightDown:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontTopUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontTopDown:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontBottomUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontBottomDown:
+      m_PersistentCalls:
+        m_Calls: []
+  SensorEvents:
+    OnSlideTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSlideUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnReloadTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnReloadUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnForwardBarGripTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnForwardBarGripUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUnderTouchpadGripTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUnderTouchpadGripUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontHandGripTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontHandGripUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontHandGripFaceTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFrontHandGripFaceUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTriggerGripTouched:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTriggerGripUntouched:
+      m_PersistentCalls:
+        m_Calls: []
+  GestureEvents:
+    OnForwardBarGripSwipeForward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnForwardBarGripSwipeBackward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUnderTouchpadSwipeForward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUnderTouchpadSwipeBackward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUnderTouchpadPump:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSlideSwipeForward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSlideSwipeBackward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnReloadSwipeForward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnReloadSwipeBackward:
+      m_PersistentCalls:
+        m_Calls: []
+    OnGesture:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &6366240984585817446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072248356106266710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5017b8552ced944bb108f95ad8f579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoConnect: 1
+  overrideConnection: 0
+  overrideIp: 127.0.0.1
+  overridePort: 5060
+  logLevel: 7
+  libraryPrefix: myStrikerApp_
+  hapticLibraries:
+  - {fileID: -5476367569076329870, guid: ee7426875022973499c29620ac3cd4ab, type: 3}
+  - {fileID: -690522139199999858, guid: 146b919e2376fea48bdb8591f27e4824, type: 3}
+  - {fileID: 4343544732731029679, guid: 144f72bf544586d4bac58c957c31c5fb, type: 3}
+  - {fileID: -799477077196408669, guid: 16810e86d3488f34f9a3b2dc4c3a5800, type: 3}
+  - {fileID: 3497597907561417100, guid: 1a12dda329a6df142bd02e6aaf4e36a6, type: 3}
+  - {fileID: 9031216270612302388, guid: 8d4db664f87eecf4a98b5e790836df3b, type: 3}
+  - {fileID: -550255239576109287, guid: cc987940ffcbad64692aa67ca9329f3a, type: 3}
+  - {fileID: -5599755368496362456, guid: 8552b9fbbc7a4334b95310265b6d14be, type: 3}
+  - {fileID: -6942979832263258616, guid: bb3eac2676819d84dbeecbb7f885152d, type: 3}
+  - {fileID: -6753837481741978460, guid: 7a7af36da3d058243aba43d4db2edf86, type: 3}
+  - {fileID: -6192917557954429673, guid: a27dd37d1d779bd4f8320dc2bf300181, type: 3}
+  - {fileID: -7350581395174578879, guid: c4891e710af0e5049b45872cba69df50, type: 3}
+  - {fileID: 5764679083349890659, guid: 9aaa146a2e2ac964c959acb92b3c65b1, type: 3}
+  - {fileID: 9111755490820122334, guid: e93f654ee528284448481828955dd5c6, type: 3}
+  - {fileID: 4842189624325411602, guid: ba1c84a159f9cc342ac16997281bb8e7, type: 3}
+  - {fileID: 5531597323146839479, guid: 25192bbdaf776764682bc709512ca3fe, type: 3}
+  OnClientConnected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClientDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnConnectionFailed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8609229457310569143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072248356106266710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549a603b5a8980c48a6a68c0e7026844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strikerDevice: {fileID: 9142912333807501953}
+  Init: {fileID: 4253851447982814623, guid: bb3eac2676819d84dbeecbb7f885152d, type: 3}
+  Respawn_H: {fileID: 1814157359018876938, guid: bb3eac2676819d84dbeecbb7f885152d, type: 3}
+  Debug: 0
+  Pivot: {fileID: 5104063430224333836}
+  FULLAUTO: 0
+  IsTrigger: 0
+  IsReload: 0
+  IsFront: 0
+  Trackpad_R: {x: 0, y: 0, z: 0}
+  Trackpad_L: {x: 0, y: 0, z: 0}
+  Function_1: 0
+  Function_2: 0
+  _color: 0
+  Render: {fileID: 1483945280358268015}
+  BadLed: {fileID: 2151077704743928187}
+  GoodLed: {fileID: 5577406931816940580}
+  Trigger: {fileID: 9183953228405605154}
+  SecondaryButton_L: {fileID: 1909943973033145547}
+  SecondaryButton_R: {fileID: 2157868781867566673}
+  BatteryLevel_UI: {fileID: 0}
+  Wrist_Left: {fileID: 1933843869203766966}
+  Wrist_Right: {fileID: 493233104662046741}
+  WaitTimeLostTracking: 1
 --- !u!1 &8227243446672407746
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,51 +5055,6 @@ Transform:
   - {fileID: 5524145778104960622}
   m_Father: {fileID: 4874225791066247437}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &8825602282746914827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8825602282746914826}
-  - component: {fileID: 1126239683886010606}
-  m_Layer: 0
-  m_Name: '[STRIKER VBS]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8825602282746914826
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8825602282746914827}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4150576141654311810}
-  m_Father: {fileID: 798286157191211955}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1126239683886010606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8825602282746914827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 549a603b5a8980c48a6a68c0e7026844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8883183290045598721
 GameObject:
   m_ObjectHideFlags: 0
