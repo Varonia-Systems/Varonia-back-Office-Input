@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace VaroniaBackOffice
 {
@@ -43,6 +44,10 @@ namespace VaroniaBackOffice
 
 
         public GameObject Render;
+
+
+
+        public Image _1, _2,_3;
 
 
         [BoxGroup("Pivot")]
@@ -107,6 +112,9 @@ namespace VaroniaBackOffice
 
             primary_ = true;
             primary_Down_ = true;
+
+            _1.color = Color.red;
+
         }
         void EventPrimaryUp_L()
         {
@@ -114,6 +122,9 @@ namespace VaroniaBackOffice
 
             primary_ = false;
             primary_Up_ = true;
+
+            _1.color = Color.white;
+
         }
         void EventSecondaryDown_L()
         {
@@ -121,6 +132,10 @@ namespace VaroniaBackOffice
 
             secondary_ = true;
             secondary_Down_ = true;
+
+
+            _2.color = Color.red;
+
         }
         void EventSecondaryUp_L()
         {
@@ -128,6 +143,10 @@ namespace VaroniaBackOffice
 
             secondary_ = false;
             secondary_Up_ = true;
+
+            _2.color = Color.white;
+
+
         }
         void EventReloadDown_L()
         {
@@ -135,6 +154,9 @@ namespace VaroniaBackOffice
 
             reload_ = true;
             reload_Down_ = true;
+
+            _3.color = Color.red;
+
         }
         void EventReloadUp_L()
         {
@@ -142,9 +164,41 @@ namespace VaroniaBackOffice
 
             reload_ = false;
             reload_Up_ = true;
+
+            _3.color = Color.white;
         }
 
 
+
+
+        private void Update()
+        {
+
+            if (DebugVaronia.Instance.AdvDebugMove)
+            {
+                MouseHook.Update();
+
+                if (MouseHook.GetMouseButtonDown(0))
+                    VaroniaInput.Instance.EventPrimaryDown.Invoke();
+
+                if (MouseHook.GetMouseButtonUp(0))
+                    VaroniaInput.Instance.EventPrimaryUp.Invoke();
+
+                if (MouseHook.GetMouseButtonDown(1))
+                    VaroniaInput.Instance.EventSecondaryDown.Invoke();
+
+                if (MouseHook.GetMouseButtonUp(1))
+                    VaroniaInput.Instance.EventSecondaryUp.Invoke();
+
+                if (MouseHook.GetMouseButtonDown(2))
+                    VaroniaInput.Instance.EventReloadDown.Invoke();
+
+                if (MouseHook.GetMouseButtonUp(2))
+                    VaroniaInput.Instance.EventReloadUp.Invoke();
+
+                MouseHook.LateUpdate();
+            }
+        }
 
 
 

@@ -231,6 +231,15 @@ namespace VaroniaBackOffice
             }
 
         }
+
+#else
+
+        void Awake()
+        {
+
+            Destroy(gameObject);
+        }
+
 #endif
     }
 
