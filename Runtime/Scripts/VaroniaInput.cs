@@ -173,6 +173,9 @@ namespace VaroniaBackOffice
 
         private void Update()
         {
+          
+                DebugVaronia.Instance.TextDebugInfo.text += " Last Input : " + VaroniaInput.Instance.LastInput.ToString("HH:mm:ss") + "\n";
+
 
             if (DebugVaronia.Instance.AdvDebugMove)
             {
