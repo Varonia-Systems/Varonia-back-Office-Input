@@ -6,8 +6,7 @@
         "VboBase.Runtime",
         "StrikerLink.Unity.Runtime",
         "SteamVR",
-        "Unity.XR.OpenVR",
-        "VBOVbs.Runtime"
+        "Unity.XR.OpenVR"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

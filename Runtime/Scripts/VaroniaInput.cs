@@ -29,6 +29,24 @@ namespace VaroniaBackOffice
 
 
 
+
+    
+        public bool HasWeaponTracking;
+        public bool LostWeaponTrackingLongTime;
+
+
+        public UnityEvent OnWeaponHasTracking = new UnityEvent();
+        public UnityEvent OnWeaponLostTracking = new UnityEvent();
+        public UnityEvent OnWeaponLostTrackingLongTime = new UnityEvent();
+        public UnityEvent OnWeaponFail = new UnityEvent();
+        public UnityEvent OnWeaponOk = new UnityEvent();
+
+
+
+
+
+
+
         private bool primary_;
         private bool primary_Down_;
         private bool primary_Up_;
@@ -60,6 +78,9 @@ namespace VaroniaBackOffice
         [BoxGroup("Other")]
         public float WaitTimeLostWeaponTracking = 1;
 
+
+        [BoxGroup("Gun Tracking")]
+        public Transform Tracking;
 
         [BoxGroup("Parameter")] public bool showDebugRenderInit, hideDebugRenderAfterChangeScene;
 
@@ -94,6 +115,11 @@ namespace VaroniaBackOffice
 
             EventReloadDown.AddListener(EventReloadDown_L);
             EventReloadUp.AddListener(EventReloadUp_L);
+
+
+            OnWeaponHasTracking.AddListener(onWeaponHasTracking);
+            OnWeaponLostTracking.AddListener(onWeaponLostTracking);
+            OnWeaponLostTrackingLongTime.AddListener(onWeaponLostTrackingLongTime);
 
 
             yield return new WaitUntil(() => Render != null);
@@ -289,7 +315,35 @@ namespace VaroniaBackOffice
             Render.SetActive(false);
         }
 
+        Coroutine LostLongWeap;
 
+        IEnumerator Lost_W_IE()
+        {
+            yield return new WaitForSeconds(VaroniaInput.Instance.WaitTimeLostWeaponTracking);
+            OnWeaponLostTrackingLongTime.Invoke();
+        }
 
+        void onWeaponLostTracking()
+        {
+            if (LostLongWeap != null)
+                StopCoroutine(LostLongWeap);
+
+            LostLongWeap = StartCoroutine(Lost_W_IE());
+            HasWeaponTracking = false;
+        }
+
+        void onWeaponLostTrackingLongTime()
+        {
+            LostWeaponTrackingLongTime = true;
+        }
+
+        void onWeaponHasTracking()
+        {
+            if (LostLongWeap != null)
+                StopCoroutine(LostLongWeap);
+
+            LostWeaponTrackingLongTime = false;
+            HasWeaponTracking = true;
+        }
     }
 }

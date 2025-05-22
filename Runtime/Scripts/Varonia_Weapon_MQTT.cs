@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using Valve.VR;
 
 #if VBO_Input
 namespace VaroniaBackOffice
@@ -94,6 +95,8 @@ namespace VaroniaBackOffice
             VaroniaInput.Instance.Render = Render;
             VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
             VaroniaInput.Instance.Pivot = Pivot;
+            VaroniaInput.Instance.Tracking = GetComponentInChildren<SteamVR_TrackedObject>().transform;
+
 
             EventPrimaryDown.AddListener(EventPrimaryDown_L);
             EventPrimaryUp.AddListener(EventPrimaryUp_L);

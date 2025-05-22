@@ -12,6 +12,7 @@ using NaughtyAttributes;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Valve.VR;
 
 public enum Color_L
 {
@@ -108,7 +109,7 @@ namespace VaroniaBackOffice
             VaroniaInput.Instance.Render = Render;
             VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
             VaroniaInput.Instance.Pivot = Pivot;
-
+            VaroniaInput.Instance.Tracking = GetComponentInChildren<SteamVR_TrackedObject>().transform;
 
 
             fixWrist = GetComponentInChildren<FixSteamTrackerID>();
@@ -186,24 +187,24 @@ namespace VaroniaBackOffice
         {
 
 
-            if (SteamFocus3Varonia.Instance == null)
-                return;
+            //if (SteamFocus3Varonia.Instance == null)
+            //    return;
 
 
             DebugInfo();
             InputWrapper();
 
 
-#if VBO_VBS
-            if (SteamFocus3Varonia.Instance.HMD_Ready && !LibraryOk)
-            {
-                GetComponent<StrikerController>().UpdateHapticLibrary();
-                LibraryOk = true;
-            }
+//#if VBO_VBS
+//            if (SteamFocus3Varonia.Instance.HMD_Ready && !LibraryOk)
+//            {
+//                GetComponent<StrikerController>().UpdateHapticLibrary();
+//                LibraryOk = true;
+//            }
 
-            if (!SteamFocus3Varonia.Instance.HMD_Ready && LibraryOk)
-                LibraryOk = false;
-#endif
+//            if (!SteamFocus3Varonia.Instance.HMD_Ready && LibraryOk)
+//                LibraryOk = false;
+//#endif
         }
 
         public void LateUpdate()
