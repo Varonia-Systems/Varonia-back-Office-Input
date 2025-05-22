@@ -195,6 +195,8 @@ namespace VaroniaBackOffice
         private void Update()
         {
 
+            if(Vortex==null)
+            return;
 
             if (!DifferentInputLeftRight)
             {

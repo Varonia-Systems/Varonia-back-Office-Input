@@ -156,7 +156,8 @@ namespace VaroniaBackOffice
         private void Update()
         {
 
-
+            if (HK == null)
+                return;
 
             if (PrimarySteam.stateDown)
                 EventPrimaryDown.Invoke();

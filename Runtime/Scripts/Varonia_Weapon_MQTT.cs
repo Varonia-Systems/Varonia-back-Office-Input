@@ -78,11 +78,12 @@ namespace VaroniaBackOffice
                 yield break;
             }
 
-            yield return new WaitUntil(() => MQTTVaronia.instance != null);
+         
            instance = this;
 
+            yield return new WaitUntil(() => MQTTVaronia.instance != null);
+            yield return new WaitUntil(() => MQTTVaronia.instance.client != null);
 
-            
 
             MQTTVaronia.instance.client.Subscribe(new string[] { "DeviceToUnity/" + Config.VaroniaConfig.WeaponMAC + "/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
