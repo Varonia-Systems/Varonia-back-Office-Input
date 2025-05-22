@@ -2847,7 +2847,7 @@ MonoBehaviour:
   Wrist_Left: {fileID: 0}
   Wrist_Right: {fileID: 0}
   Pivot: {fileID: 5463798938579633996}
-  Controller: 6
+  Controller: 70
 --- !u!1 &4427628012040203929
 GameObject:
   m_ObjectHideFlags: 0
