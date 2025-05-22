@@ -78,12 +78,15 @@ namespace VaroniaBackOffice
                 yield break;
             }
 
-            instance = this;
+            yield return new WaitUntil(() => MQTTVaronia.instance != null);
+           instance = this;
 
 
             
 
             MQTTVaronia.instance.client.Subscribe(new string[] { "DeviceToUnity/" + Config.VaroniaConfig.WeaponMAC + "/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+
+            Debug.Log(Controller + " Subscribe to MQTT whith MAC adress : " + Config.VaroniaConfig.WeaponMAC);
 
             MQTTVaronia.instance.ReceiveMsg.AddListener(event_);
 
