@@ -96,10 +96,7 @@ namespace VaroniaBackOffice
         {
             Instance = this;
 
-            VaroniaInput.Instance.Render = Render;
-            VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
-            VaroniaInput.Instance.Pivot = Pivot;
-
+        
             yield return new WaitUntil(() => Config.VaroniaConfig != null);
 
             if (Config.VaroniaConfig.Controller != Controller.FOCUS3_VBS_Striker)
@@ -107,6 +104,10 @@ namespace VaroniaBackOffice
                 Destroy(gameObject);
                 yield break;
             }
+
+            VaroniaInput.Instance.Render = Render;
+            VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
+            VaroniaInput.Instance.Pivot = Pivot;
 
 
 
