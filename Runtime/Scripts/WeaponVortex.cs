@@ -153,7 +153,7 @@ namespace VaroniaBackOffice
 
         public IEnumerator Start()
         {
-            Vortex = this;
+         
 
             yield return new WaitUntil(() => Config.VaroniaConfig != null);
 
@@ -162,6 +162,9 @@ namespace VaroniaBackOffice
                 Destroy(gameObject);
                 yield break;
             }
+
+
+               Vortex = this;
 
             if (Config.VaroniaConfig.UseVortexBackOffice)
             {
