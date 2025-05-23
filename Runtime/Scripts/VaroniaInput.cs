@@ -84,7 +84,7 @@ namespace VaroniaBackOffice
 
         [BoxGroup("Parameter")] public bool showDebugRenderInit, hideDebugRenderAfterChangeScene;
 
-
+        //
         private void Awake()
         {
             Instance = this;
