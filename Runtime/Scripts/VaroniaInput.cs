@@ -30,7 +30,7 @@ namespace VaroniaBackOffice
 
 
 
-    
+
         public bool HasWeaponTracking;
         public bool LostWeaponTrackingLongTime;
 
@@ -65,7 +65,7 @@ namespace VaroniaBackOffice
 
 
 
-        public Image _1, _2,_3;
+        public Image _1, _2, _3;
 
 
         [BoxGroup("Pivot")]
@@ -102,6 +102,14 @@ namespace VaroniaBackOffice
 
         private IEnumerator Start()
         {
+            yield return new WaitUntil(() => Config.Instance != null);
+
+            if (Config.VaroniaConfig.DeviceMode == DeviceMode.Server_Spectator)
+            {
+                Destroy(gameObject);
+                yield break;
+            }
+
             DontDestroyOnLoad(gameObject);
 
 
@@ -199,8 +207,8 @@ namespace VaroniaBackOffice
 
         private void Update()
         {
-          
-                DebugVaronia.Instance.TextDebugInfo.text += " Last Input : " + VaroniaInput.Instance.LastInput.ToString("HH:mm:ss") + "\n";
+
+            DebugVaronia.Instance.TextDebugInfo.text += " Last Input : " + VaroniaInput.Instance.LastInput.ToString("HH:mm:ss") + "\n";
 
 
             if (DebugVaronia.Instance.AdvDebugMove)
@@ -259,8 +267,8 @@ namespace VaroniaBackOffice
             if (VaroniaGlobal.VG == null || VaroniaGlobal.VG.Rig == null)
                 return;
 
-         
-             OffsetCompensation.transform.position = VaroniaGlobal.VG.Rig.position; OffsetCompensation.transform.rotation = VaroniaGlobal.VG.Rig.rotation; 
+
+            OffsetCompensation.transform.position = VaroniaGlobal.VG.Rig.position; OffsetCompensation.transform.rotation = VaroniaGlobal.VG.Rig.rotation;
 
 
 
@@ -311,8 +319,8 @@ namespace VaroniaBackOffice
 
         public void HideRender()
         {
-            if(Render != null)
-            Render.SetActive(false);
+            if (Render != null)
+                Render.SetActive(false);
         }
 
         Coroutine LostLongWeap;
