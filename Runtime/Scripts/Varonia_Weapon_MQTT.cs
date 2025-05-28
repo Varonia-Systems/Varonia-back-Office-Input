@@ -90,7 +90,7 @@ namespace VaroniaBackOffice
 
             Debug.Log(Controller + " Subscribe to MQTT whith MAC adress : " + Config.VaroniaConfig.WeaponMAC);
 
-            MQTTVaronia.instance.ReceiveMsg.AddListener(event_);
+            MQTTVaronia.instance.ReceiveMsg+=event_;
 
             VaroniaInput.Instance.Render = Render;
             VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
