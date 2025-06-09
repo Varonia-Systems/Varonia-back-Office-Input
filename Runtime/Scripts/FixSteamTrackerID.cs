@@ -14,6 +14,8 @@ public class FixSteamTrackerID : MonoBehaviour
     public UnityEvent OnRightTracker;
 
 
+
+
     void OnEnable()
     {
         StartCoroutine(Start_());
@@ -62,11 +64,15 @@ public class FixSteamTrackerID : MonoBehaviour
         {
             for (int i = 0; i < SteamVR.connected.Length; ++i)
             {
+                if (!SteamVR.connected[i])
+                    continue;
+
                 try
                 {
                     VRControllerState_t state1 = new VRControllerState_t();
                     TrackedDevicePose_t pose1 = new TrackedDevicePose_t();
-                    var RenderModelName = SteamVR.instance.GetStringProperty(Valve.VR.ETrackedDeviceProperty.Prop_RenderModelName_String, (uint)i);
+                    string RenderModelName = "";
+                    if (OpenVR.System != null) RenderModelName = SteamVR.instance.GetStringProperty(Valve.VR.ETrackedDeviceProperty.Prop_RenderModelName_String, (uint)i);
                     var ControllerStateWithPose = false;
                     if (OpenVR.System != null)
                         ControllerStateWithPose = OpenVR.System.GetControllerStateWithPose(ETrackingUniverseOrigin.TrackingUniverseRawAndUncalibrated, (uint)i, ref state1, (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(VRControllerState_t)), ref pose1);
@@ -95,11 +101,21 @@ public class FixSteamTrackerID : MonoBehaviour
     {
         while (SteamVR.instance != null)
         {
+
+
             for (int i = 0; i < SteamVR.connected.Length; ++i)
             {
+
+                if (!SteamVR.connected[i])
+                    continue;
+
+                if (SteamVR.instance == null)
+                    continue; // Sécurité supplémentaire
+
                 try
                 {
-                    var C = SteamVR.instance.GetStringProperty(Valve.VR.ETrackedDeviceProperty.Prop_ModelNumber_String, (uint)i);
+                    string C = "";
+                    if (OpenVR.System != null) C = SteamVR.instance.GetStringProperty(Valve.VR.ETrackedDeviceProperty.Prop_ModelNumber_String, (uint)i);
                     var D = false;
                     VRControllerState_t state1 = new VRControllerState_t();
                     TrackedDevicePose_t pose1 = new TrackedDevicePose_t();
@@ -123,8 +139,13 @@ public class FixSteamTrackerID : MonoBehaviour
     {
         while (SteamVR.instance != null)
         {
+
+
             for (int i = 0; i < SteamVR.connected.Length; ++i)
             {
+
+                if (!SteamVR.connected[i])
+                    continue;
 
                 try
                 {

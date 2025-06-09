@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Valve.VR;
 
 namespace VaroniaBackOffice
 {
@@ -44,7 +45,7 @@ namespace VaroniaBackOffice
 
 
 
-
+         
 
 
         private bool primary_;
@@ -62,7 +63,8 @@ namespace VaroniaBackOffice
 
 
         public GameObject Render;
-
+        
+        public Transform trackedObj;
 
 
         public Image _1, _2, _3;
@@ -110,7 +112,7 @@ namespace VaroniaBackOffice
                 yield break;
             }
 
-            DontDestroyOnLoad(gameObject);
+            
 
 
 
@@ -132,11 +134,17 @@ namespace VaroniaBackOffice
 
             yield return new WaitUntil(() => Render != null);
 
+            
+            trackedObj = GetComponentInChildren<SteamVR_TrackedObject>().transform;
+            
             // Debug Render
             Render.SetActive(showDebugRenderInit);
             if (hideDebugRenderAfterChangeScene)
                 SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
+            
+            
+            
         }
 
 
@@ -213,6 +221,9 @@ namespace VaroniaBackOffice
 
             if (DebugVaronia.Instance.AdvDebugMove)
             {
+                if (!Application.isFocused)
+                    return;
+
                 MouseHook.Update();
 
                 if (MouseHook.GetMouseButtonDown(0))
