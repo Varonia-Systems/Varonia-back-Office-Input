@@ -67,9 +67,7 @@ namespace VaroniaBackOffice
 
         public GameObject Render;
         
-        public Transform trackedObj;
-
-
+        
         public Image _1, _2, _3;
 
 
@@ -138,7 +136,7 @@ namespace VaroniaBackOffice
             yield return new WaitUntil(() => Render != null);
 
             
-            trackedObj = GetComponentInChildren<SteamVR_TrackedObject>().transform;
+      
             
             // Debug Render
             Render.SetActive(settings.showDebugRenderInit);
