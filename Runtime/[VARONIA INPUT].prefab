@@ -4226,7 +4226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8437298322498955405}
   - component: {fileID: 1568356978545659128}
-  - component: {fileID: 2841535451672850464}
+  - component: {fileID: -7312964615321641107}
   m_Layer: 0
   m_Name: '[VARONIA INPUT]'
   m_TagString: Untagged
@@ -4281,16 +4281,35 @@ MonoBehaviour:
   EventReloadUp:
     m_PersistentCalls:
       m_Calls: []
+  HasWeaponTracking: 0
+  LostWeaponTrackingLongTime: 0
+  OnWeaponHasTracking:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponLostTracking:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponLostTrackingLongTime:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponFail:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponOk:
+    m_PersistentCalls:
+      m_Calls: []
   Render: {fileID: 0}
+  trackedObj: {fileID: 0}
   _1: {fileID: 5439217880067821836}
   _2: {fileID: 3476496076161125631}
   _3: {fileID: 4525112219440386265}
   Pivot: {fileID: 0}
   OffsetCompensation: {fileID: 2918049001953472838}
   WaitTimeLostWeaponTracking: 1
+  Tracking: {fileID: 0}
   showDebugRenderInit: 0
   hideDebugRenderAfterChangeScene: 0
---- !u!114 &2841535451672850464
+--- !u!114 &-7312964615321641107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4299,9 +4318,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6498108196943241179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b70b11959bbfb9147ad4784ae44555ad, type: 3}
+  m_Script: {fileID: 11500000, guid: bd3c2018faa8dd04cae85df00c33e6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCustomConfig: 1
 --- !u!1 &6519187565139544537
 GameObject:
   m_ObjectHideFlags: 0

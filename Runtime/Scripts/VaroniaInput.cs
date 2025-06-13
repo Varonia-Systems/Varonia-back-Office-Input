@@ -11,8 +11,11 @@ using Valve.VR;
 
 namespace VaroniaBackOffice
 {
-    public class VaroniaInput : MonoBehaviour
+    public class VaroniaInput : MonoBehaviour,IAddonConfigurable
     {
+        VaroniaInputSettings settings;
+        
+        
         public DateTime LastInput;
 
         public static VaroniaInput Instance;
@@ -30,7 +33,7 @@ namespace VaroniaBackOffice
 
 
 
-
+ 
 
         public bool HasWeaponTracking;
         public bool LostWeaponTrackingLongTime;
@@ -84,7 +87,7 @@ namespace VaroniaBackOffice
         [BoxGroup("Gun Tracking")]
         public Transform Tracking;
 
-        [BoxGroup("Parameter")] public bool showDebugRenderInit, hideDebugRenderAfterChangeScene;
+      
 
         //
         private void Awake()
@@ -105,7 +108,7 @@ namespace VaroniaBackOffice
         private IEnumerator Start()
         {
             yield return new WaitUntil(() => Config.Instance != null);
-
+            yield return new WaitUntil(() => settings != null);
             if (Config.VaroniaConfig.DeviceMode == DeviceMode.Server_Spectator)
             {
                 Destroy(gameObject);
@@ -138,8 +141,8 @@ namespace VaroniaBackOffice
             trackedObj = GetComponentInChildren<SteamVR_TrackedObject>().transform;
             
             // Debug Render
-            Render.SetActive(showDebugRenderInit);
-            if (hideDebugRenderAfterChangeScene)
+            Render.SetActive(settings.showDebugRenderInit);
+            if (settings.hideDebugRenderAfterChangeScene)
                 SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
             
@@ -364,5 +367,13 @@ namespace VaroniaBackOffice
             LostWeaponTrackingLongTime = false;
             HasWeaponTracking = true;
         }
+        
+        public void ApplyScriptableConfig(ScriptableObject config)
+        {
+                settings = config as VaroniaInputSettings;
+            
+        }
+        
+        
     }
 }
