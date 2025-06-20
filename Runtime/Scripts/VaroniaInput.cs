@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR;
 using Valve.VR;
 
 namespace VaroniaBackOffice
@@ -345,6 +346,9 @@ namespace VaroniaBackOffice
 
         void onWeaponLostTracking()
         {
+           if(!XRSettings.enabled)
+               return;
+            
             if (LostLongWeap != null)
                 StopCoroutine(LostLongWeap);
 
@@ -359,6 +363,10 @@ namespace VaroniaBackOffice
 
         void onWeaponHasTracking()
         {
+            
+            if(!XRSettings.enabled)
+                return;
+            
             if (LostLongWeap != null)
                 StopCoroutine(LostLongWeap);
 

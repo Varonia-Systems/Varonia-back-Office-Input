@@ -183,7 +183,7 @@ namespace VaroniaBackOffice
 
 
             VaroniaInput.Instance.Pivot = Pivot;
-
+            VaroniaInput.Instance.Tracking = GetComponentInChildren<SteamVR_TrackedObject>().transform;
 
 
             EventPrimaryDown.AddListener(EventPrimaryDown_L);

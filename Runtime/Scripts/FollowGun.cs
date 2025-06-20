@@ -3,21 +3,14 @@ using UnityEngine;
 
 public class FollowGun : MonoBehaviour
 {
-    IEnumerator Start()
-    {
-        yield return new WaitUntil(() => VaroniaBackOffice.VaroniaInput.Instance != null);
-        yield return new WaitUntil(() => VaroniaBackOffice.VaroniaInput.Instance.Pivot != null);
-
-        while (true)
+    void LateUpdate()
         {
+            
+             if(VaroniaBackOffice.VaroniaInput.Instance == null) return;
+             if(VaroniaBackOffice.VaroniaInput.Instance.Pivot == null) return;
+            
             transform.position = VaroniaBackOffice.VaroniaInput.Instance.Pivot.position;
             transform.rotation = VaroniaBackOffice.VaroniaInput.Instance.Pivot.rotation;
-
-            yield return null;
-
+            
         }
-
-    }
-
-
 }
