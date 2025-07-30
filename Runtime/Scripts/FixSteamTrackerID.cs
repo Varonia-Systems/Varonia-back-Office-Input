@@ -38,7 +38,7 @@ public class FixSteamTrackerID : MonoBehaviour
         {
             StartCoroutine(ViveBuisnessStreaming());
         }
-        else if (Config.VaroniaConfig.Controller == Controller.PICO_VSVR_VaroniaGun)  // VARONIA STREAMER VR (SWITF 2.0 PICO)
+        else if (Config.VaroniaConfig.Controller == Controller.PICO_VSVR_VaroniaGun || Config.VaroniaConfig.Controller == Controller.PICO_VSVR_Striker  )  // VARONIA STREAMER VR (SWITF 2.0 PICO)
         {
             StartCoroutine(VaroniaStreamingVR());
 

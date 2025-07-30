@@ -95,7 +95,28 @@ namespace VaroniaBackOffice
         }
 
 
+        public static bool IsStriker()
+        {
+            bool value = false;
+            
+            if(Config.VaroniaConfig == null)
+                return value;
 
+            switch (Config.VaroniaConfig.Controller)
+            {
+               
+                case Controller.FOCUS3_VBS_Striker:
+                    value = true;
+                    break;
+                case Controller.PICO_VSVR_Striker:
+                    value = true;
+                    break;
+            }
+            
+            return value;
+        }
+        
+        
         private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
         {
             Render.SetActive(false);

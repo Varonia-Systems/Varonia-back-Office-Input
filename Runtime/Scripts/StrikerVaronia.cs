@@ -32,7 +32,7 @@ namespace VaroniaBackOffice
 
         public StrikerDevice strikerDevice;
 
-        // public List<Weapon_Haptic> weapons;
+         public List<HapticLibraryAsset> Library = new List<HapticLibraryAsset>();
 
         public HapticEffectAsset Init;
 
@@ -40,6 +40,8 @@ namespace VaroniaBackOffice
 
         public bool Debug;
 
+
+        public bool pico;
 
         [BoxGroup("Pivot")]
         public Transform Pivot;
@@ -100,12 +102,24 @@ namespace VaroniaBackOffice
         
             yield return new WaitUntil(() => Config.VaroniaConfig != null);
 
-            if (Config.VaroniaConfig.Controller != Controller.FOCUS3_VBS_Striker)
+            bool _isOk = false;
+            
+            if ((Config.VaroniaConfig.Controller == Controller.FOCUS3_VBS_Striker && !pico) || (Config.VaroniaConfig.Controller == Controller.PICO_VSVR_Striker && pico))
             {
-                Destroy(gameObject);
-                yield break;
+                _isOk = true;
             }
 
+         if(!_isOk)
+         {
+            Destroy(gameObject);
+            yield break;
+         }
+
+         GetComponent<StrikerDevice>().enabled = true;
+         gameObject.AddComponent<StrikerController>().hapticLibraries= Library;
+         
+          
+         
             VaroniaInput.Instance.Render = Render;
             VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
             VaroniaInput.Instance.Pivot = Pivot;
@@ -129,22 +143,31 @@ namespace VaroniaBackOffice
             BadLed.SetActive(false);
             GoodLed.SetActive(true);
 
-            for (int i = 0; i < 3; i++)
-            {
-                strikerDevice.PlaySolidLedEffect(Color.green);
-                strikerDevice.PlaySolidLedEffect(Color.green, 0, StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.FrontRings);
-                yield return new WaitForSeconds(0.3f);
+            
+             Color C = Color.blue;
+            
+             if(pico) C = Color.white;
+            
+             for (int i = 0; i < 3; i++)
+             {
+                 strikerDevice.PlaySolidLedEffect(Color.green);
+                 strikerDevice.PlaySolidLedEffect(Color.green, 0, StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.FrontRings);
+                 yield return new WaitForSeconds(0.3f);
+            
+                     strikerDevice.FireHaptic(Init);
+                 strikerDevice.PlaySolidLedEffect(C);
+                 strikerDevice.PlaySolidLedEffect(C, 0, StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.FrontRings);
+                 yield return new WaitForSeconds(0.1f);
+            
+             }
+             strikerDevice.PlaySolidLedEffect(Color.green, 0, StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.FrontRings);
+             strikerDevice.PlaySolidLedEffect(Color.green);
 
-                    strikerDevice.FireHaptic(Init);
-                strikerDevice.PlaySolidLedEffect(Color.blue);
-                strikerDevice.PlaySolidLedEffect(Color.blue, 0, StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.FrontRings);
-                yield return new WaitForSeconds(0.1f);
-
-            }
-            strikerDevice.PlaySolidLedEffect(Color.green, 0, StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.FrontRings);
-            strikerDevice.PlaySolidLedEffect(Color.green);
-
-
+            //StrikerVaronia.Instance.strikerDevice.PlayForwardLedEffect(Color.green,Color.black,0.5f,1,StrikerLink.Shared.Devices.Types.DeviceMavrik.LedGroup.TopLine);
+               
+            yield return new WaitForSeconds(0.1f);
+            
+            strikerDevice.PlaySolidLedEffect(Color.magenta,10);
 
             while (true)
             {
