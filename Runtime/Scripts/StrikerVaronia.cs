@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System.Linq;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Valve.VR;
@@ -115,10 +116,34 @@ namespace VaroniaBackOffice
             yield break;
          }
 
-         GetComponent<StrikerDevice>().enabled = true;
-         gameObject.AddComponent<StrikerController>().hapticLibraries= Library;
          
+         GameObject go = new GameObject("StrikerController");
+         go.transform.SetParent(transform);
+         go.transform.localPosition = new Vector3(0, 0, 0);
+         go.transform.localRotation = Quaternion.identity;
+         go.SetActive(false);
+         
+          var A =go.AddComponent<StrikerController>();
+          A.autoConnect = false;
+           A.hapticLibraries= Library;
+          yield return new WaitForSeconds(0.1f);
+          go.SetActive(true);
+          yield return new WaitForSeconds(0.1f);
+          strikerDevice =gameObject.AddComponent<StrikerDevice>();
+          strikerDevice.deviceOffsetRoot = transform;
           
+          
+         A.OnClientConnected  = new UnityEvent();
+         A.OnClientDisconnected = new UnityEvent();
+         A.OnConnectionFailed = new UnityEvent();
+
+         strikerDevice.DeviceEvents = new StrikerDevice.StrikerDeviceEvents();
+         strikerDevice.DeviceEvents.OnDeviceConnected = new StrikerDevice.DeviceEvent();
+         strikerDevice.DeviceEvents.OnDeviceDisconnected = new StrikerDevice.DeviceEvent();
+          
+          yield return new WaitForSeconds(0.1f);
+          
+          A.Connect();
          
             VaroniaInput.Instance.Render = Render;
             VaroniaInput.Instance.WaitTimeLostWeaponTracking = WaitTimeLostTracking;
@@ -167,7 +192,7 @@ namespace VaroniaBackOffice
                
             yield return new WaitForSeconds(0.1f);
             
-            strikerDevice.PlaySolidLedEffect(Color.magenta,10);
+           
 
             while (true)
             {
@@ -244,6 +269,9 @@ namespace VaroniaBackOffice
 
         public void DebugInfo()
         {
+            if(strikerDevice == null)
+                return;
+            
             string BattLevel = "";
             string IsCo = "";
             string IsRe = "";
@@ -280,6 +308,10 @@ namespace VaroniaBackOffice
         public virtual void InputWrapper()
         {
 
+            if(strikerDevice == null)
+                return;
+            
+            
             // Trigger Down
             if (strikerDevice.GetTriggerDown())
             {
