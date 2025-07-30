@@ -98,7 +98,7 @@ namespace VaroniaBackOffice
 
         public IEnumerator Start()
         {
-            Instance = this;
+            
 
         
             yield return new WaitUntil(() => Config.VaroniaConfig != null);
@@ -116,6 +116,8 @@ namespace VaroniaBackOffice
             yield break;
          }
 
+         
+         Instance = this;
          
          GameObject go = new GameObject("StrikerController");
          go.transform.SetParent(transform);
